@@ -11,12 +11,12 @@
 
 #### udp 방식 연동 여부 설정
 * **ext_plugin_influxdb_udp** : UDP protocol로 연동 (default : true)
-* **ext_plugin_influxdb_udp_local_ip** : UDP local adress (default : null)
-* **ext_plugin_influxdb_udp_local_port** : UDP local adress (default : 0)
+* **ext_plugin_influxdb_udp_local_ip** : UDP local address (default : null)
+* **ext_plugin_influxdb_udp_local_port** : UDP local address (default : 0)
 * **ext_plugin_influxdb_udp_target_ip** : UDP target(influxdb) address (default : 127.0.0.1)
 * **ext_plugin_influxdb_udp_target_port** : UDP target(influxdb) port (default : 8089)
 
-#### http 방식 연동 여부 설정
+#### http 방식 연동 여부 설정 (set false **ext_plugin_influxdb_udp** for using http)
 * **ext_plugin_influxdb_http_target_ip** : http target(influxdb) address (default : 127.0.0.1)
 * **ext_plugin_influxdb_http_target_port** : http target(influxdb) port (default : 8086)
 * **ext_plugin_influxdb_http_retention_policy** : measurement retention policy (default : default)
