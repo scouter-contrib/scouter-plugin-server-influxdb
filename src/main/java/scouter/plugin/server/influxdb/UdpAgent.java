@@ -61,14 +61,15 @@ public class UdpAgent {
         try {
             if (datagram != null) {
                 close(datagram);
-                if (localUdpAddr != null) {
-                    datagram = new DatagramSocket(localUdpPort, InetAddress.getByName(localUdpAddr));
-                    Logger.println("InfluxDB Agent UDP local.addr=" + localUdpAddr + " local.port=" + localUdpPort);
-                } else {
-                    datagram = new DatagramSocket(localUdpPort);
-                    Logger.println("InfluxDB Agent UDP local.port=" + localUdpPort);
-                }
             }
+            if (localUdpAddr != null) {
+                datagram = new DatagramSocket(localUdpPort, InetAddress.getByName(localUdpAddr));
+                Logger.println("InfluxDB Agent UDP local.addr=" + localUdpAddr + " local.port=" + localUdpPort);
+            } else {
+                datagram = new DatagramSocket(localUdpPort);
+                Logger.println("InfluxDB Agent UDP local.port=" + localUdpPort);
+            }
+
         } catch (Exception e) {
             if (conf._trace) {
                 Logger.printStackTrace(e);
