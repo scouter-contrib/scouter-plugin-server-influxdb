@@ -1,6 +1,6 @@
 # scouter-plugin-server-influxdb
 ###Scouter server plugin for an influxdb one of the time seriesedb.
-![Englsh](https://img.shields.io/badge/language-English-red.svg) [![Korean](https://img.shields.io/badge/language-Korean-blue.svg)](README_kr.md)
+[![Englsh](https://img.shields.io/badge/language-English-red.svg)](README.md) ![Korean](https://img.shields.io/badge/language-Korean-blue.svg)
 
 - Scouter Server Plugin으로 성능 counter 정보를 influxdb로 전송해 주는 plugin 이다.
 
