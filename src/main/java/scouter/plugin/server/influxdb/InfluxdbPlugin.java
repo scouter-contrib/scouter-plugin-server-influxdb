@@ -73,7 +73,7 @@ public class InfluxdbPlugin {
             udpAgent.setLocalAddr(udpLocalIp, udpLocalPort);
             udpAgent.setTarget(udpTargetIp, udpTargetPort);
         } else {
-            influx = InfluxDBFactory.connect("http//" + httpTargetIp + ":" + httpTargetPort, id, password);
+            influx = InfluxDBFactory.connect("http://" + httpTargetIp + ":" + httpTargetPort, id, password);
             influx.enableBatch(200, 200, TimeUnit.MILLISECONDS);
             influx.createDatabase(dbName);
         }
@@ -90,7 +90,7 @@ public class InfluxdbPlugin {
                         udpAgent.setLocalAddr(udpLocalIp, udpLocalPort);
                         udpAgent.setTarget(udpTargetIp, udpTargetPort);
                     } else {
-                        influx = InfluxDBFactory.connect("http//" + httpTargetIp + ":" + httpTargetPort, id, password);
+                        influx = InfluxDBFactory.connect("http://" + httpTargetIp + ":" + httpTargetPort, id, password);
                         influx.createDatabase(dbName);
                     }
                 }
@@ -128,7 +128,7 @@ public class InfluxdbPlugin {
                     retentionPolicy = newRetentionPolicy;
                     id = newId;
                     password = newPassword;
-                    influx = InfluxDBFactory.connect("http//" + httpTargetIp + ":" + httpTargetPort, id, password);
+                    influx = InfluxDBFactory.connect("http://" + httpTargetIp + ":" + httpTargetPort, id, password);
                 }
 
             }
