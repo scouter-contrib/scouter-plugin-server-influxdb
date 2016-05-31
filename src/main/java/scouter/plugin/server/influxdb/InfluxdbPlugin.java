@@ -160,6 +160,9 @@ public class InfluxdbPlugin {
                     continue;
                 }
                 Object value = valueOrigin.toJavaObject();
+                if(!(value instanceof Number)) {
+                    continue;
+                }
                 String key = field.getKey();
                 builder.field(key, value);
             }
