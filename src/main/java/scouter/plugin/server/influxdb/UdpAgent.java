@@ -2,6 +2,7 @@ package scouter.plugin.server.influxdb;
 
 import scouter.server.Configure;
 import scouter.server.Logger;
+import scouter.util.StringUtil;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -40,7 +41,7 @@ public class UdpAgent {
 
     public void setLocalAddr(String localIp, int localPort) {
         try {
-            localUdpAddr = localIp;
+            localUdpAddr = StringUtil.isEmpty(localIp) ? null : localIp;
             localUdpPort = localPort;
             openDatagramSocket();
         } catch (Exception e) {
