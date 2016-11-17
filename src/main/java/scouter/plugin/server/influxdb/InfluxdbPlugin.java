@@ -60,7 +60,7 @@ public class InfluxdbPlugin {
 
     String httpTargetIp = conf.getValue(ext_plugin_influxdb_http_target_ip, "127.0.0.1");
     int httpTargetPort = conf.getInt(ext_plugin_influxdb_http_target_port, 8086);
-    String retentionPolicy = conf.getValue(ext_plugin_influxdb_http_retention_policy, "default");
+    String retentionPolicy = conf.getValue(ext_plugin_influxdb_http_retention_policy, "autogen");
     String id = conf.getValue(ext_plugin_influxdb_id, "root");
     String password = conf.getValue(ext_plugin_influxdb_password, "root");
     String dbName = conf.getValue(ext_plugin_influxdb_dbName, "scouterCounter");
@@ -141,6 +141,10 @@ public class InfluxdbPlugin {
             return;
         }
 
+        if(pack.timetype != TimeTypeEnum.REALTIME) {
+            return;
+        }
+
         try {
             String objName = pack.objName;
             int objHash = HashUtil.hash(objName);
@@ -150,8 +154,7 @@ public class InfluxdbPlugin {
                     .time(pack.time, TimeUnit.MILLISECONDS)
                     .tag(tagObjName, objName)
                     .tag(tagObjType, objType)
-                    .tag(tagObjFamily, objFamily)
-                    .tag(tagTimeTypeName, TimeTypeEnum.getString(pack.timetype));
+                    .tag(tagObjFamily, objFamily);
 
             Map<String, Value> dataMap = pack.data.toMap();
             for (Map.Entry<String, Value> field : dataMap.entrySet()) {
@@ -164,7 +167,10 @@ public class InfluxdbPlugin {
                     continue;
                 }
                 String key = field.getKey();
-                builder.field(key, value);
+                if("time".equals(key)) {
+                    continue;
+                }
+                builder.addField(key, (Number)value);
             }
             Point point = builder.build();
 
